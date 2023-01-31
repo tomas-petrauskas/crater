@@ -27,9 +27,9 @@ services:
       - db:/var/lib/mysql
     environment:
       MYSQL_USER: crater
-      MYSQL_PASSWORD: crater
+      MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: crater
-      MYSQL_ROOT_PASSWORD: crater
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
     networks:
       - crater
 
@@ -45,6 +45,7 @@ services:
       - proxy
 
   cron:
+    container_name: crater_cron
     build:
       context: ./
       dockerfile: ./docker-compose/cron.dockerfile
