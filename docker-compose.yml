@@ -22,7 +22,7 @@ services:
   db:
     container_name: crater_db
     image: mariadb
-    restart: always
+    restart: unless-stopped
     volumes:
       - db:/var/lib/mysql
     environment:
@@ -46,6 +46,7 @@ services:
 
   cron:
     container_name: crater_cron
+    restart: unless-stopped
     build:
       context: ./
       dockerfile: ./docker-compose/cron.dockerfile
